@@ -9,7 +9,7 @@ const port = process.env.PORT || 3000;
 app.use(morgan("dev"));
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("SRCA and SR&CA management tools");
+	res.send("SRCA and SR&CA management tools");
 });
 
 app.use("/trajects", trajectsRouter);
@@ -17,5 +17,5 @@ app.use("/stations", stationsRouter);
 app.use("/rolling-stock", rollingStockRouter);
 
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+	console.log(`Server running at http://localhost:${port}`);
 });
