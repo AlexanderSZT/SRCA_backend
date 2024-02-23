@@ -5,7 +5,7 @@ import { Traject } from "../utils/types";
 
 dotenv.config();
 
-export const trajectsRouter = Router();
+const trajectsRouter = Router();
 const API_KEY = process.env.API_KEY;
 
 trajectsRouter.use(function timeLog(req, res, next) {
@@ -27,7 +27,7 @@ trajectsRouter.get("/all", async (req: Request, res: Response) => {
 		res.status(200).json(trajects);
 	} else {
 		res.status(404).json({
-			message: "Pas de trajets",
+			message: "No trajects found",
 		});
 	}
 });
@@ -43,7 +43,7 @@ trajectsRouter.get("/service", async (req: Request, res: Response) => {
 		res.status(200).json(trajects);
 	} else {
 		res.status(404).json({
-			message: "Pas de trajets pour la classification désirée",
+			message: "No trajects found for this service classification",
 		});
 	}
 });
@@ -71,6 +71,8 @@ trajectsRouter.get("/from", async (req: Request, res: Response) => {
 	if (trajects?.length !== 0) {
 		res.status(200).json(trajects);
 	} else {
-		res.status(400).send(`Aucun trajet trouvé depuis ${stationName}`);
+		res.status(400).send(`No trajects found from ${stationName} station`);
 	}
 });
+
+export { trajectsRouter };

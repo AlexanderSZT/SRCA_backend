@@ -4,7 +4,7 @@ import { fetchStations } from "../utils/customFetchMethods";
 
 dotenv.config();
 
-export const stationsRouter = Router();
+const stationsRouter = Router();
 const API_KEY = process.env.API_KEY;
 
 stationsRouter.use(function timeLog(req, res, next) {
@@ -37,3 +37,5 @@ stationsRouter.get("/company", async (req: Request, res: Response) => {
 		res.status(404).send(`Aucune gare`);
 	}
 });
+
+export { stationsRouter };

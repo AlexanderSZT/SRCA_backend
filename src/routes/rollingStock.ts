@@ -4,7 +4,7 @@ import { fetchRollingStock } from "../utils/customFetchMethods";
 
 dotenv.config();
 
-export const rollingStockRouter = Router();
+const rollingStockRouter = Router();
 const API_KEY = process.env.API_KEY;
 
 rollingStockRouter.use(function timeLog(
@@ -28,7 +28,7 @@ rollingStockRouter.get("/all", async (req: Request, res: Response) => {
 		res.status(200).json(rollingStock);
 	} else {
 		res.status(404).json({
-			message: "Pas de matériel roulant",
+			message: "No rolling stock found",
 		});
 	}
 });
@@ -44,7 +44,9 @@ rollingStockRouter.get("/company", async (req: Request, res: Response) => {
 		res.status(200).json(rollingStock);
 	} else {
 		res.status(404).json({
-			message: "Pas de matériel roulant",
+			message: "No rolling stock found",
 		});
 	}
 });
+
+export { rollingStockRouter };

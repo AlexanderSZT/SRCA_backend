@@ -50,7 +50,7 @@ export const fetchRollingStock = async (
 		}
 		if (customLivery === "0") {
 			return rollingStock.data.filter(
-				(rs: RollingStock) => !rs.img.includes("/co5092/")
+				(rs: RollingStock) => !rs.img.includes("/co")
 			);
 		}
 		return rollingStock.data;
