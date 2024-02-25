@@ -42,7 +42,6 @@ export const fetchRollingStock = async (
 		const rollingStock: AxiosResponse<RollingStock[]> = await axios.get(
 			endpoint
 		);
-		console.log(customLivery);
 		if (customLivery === "1") {
 			return rollingStock.data.filter((rs: RollingStock) =>
 				rs.img.includes("/co")
