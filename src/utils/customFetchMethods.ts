@@ -52,6 +52,12 @@ export const fetchRollingStock = async (
 				(rs: RollingStock) => !rs.img.includes("/co")
 			);
 		}
+		if (
+			(customLivery && customLivery !== "0") ||
+			(customLivery && customLivery !== "1")
+		) {
+			return undefined;
+		}
 		return rollingStock.data;
 	} catch (error) {
 		console.error(error);

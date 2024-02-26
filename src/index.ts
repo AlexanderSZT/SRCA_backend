@@ -1,4 +1,5 @@
 import express, { Express, Request, Response } from "express";
+import cors from "cors";
 import morgan from "morgan";
 import { trajectsRouter } from "./routes/trajects";
 import { stationsRouter } from "./routes/stations";
@@ -6,6 +7,7 @@ import { rollingStockRouter } from "./routes/rollingStock";
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
+app.use(cors());
 app.use(morgan("dev"));
 
 app.get("/", (req: Request, res: Response) => {

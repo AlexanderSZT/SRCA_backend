@@ -1,3 +1,8 @@
+/**
+ *
+ * @param number An eleven string representing the UIC number of the locomotive
+ * @returns The autocontrol key of the input number using the Luhn algorithm
+ */
 function calculateAutocontrol(number: string): number {
 	let sum = 0;
 	let shouldDouble = true;
@@ -22,9 +27,15 @@ function calculateAutocontrol(number: string): number {
 	return checkDigit;
 }
 
-function formatLocomotiveNumber(digits: string, luhnDigit: number): string {
+/**
+ *
+ * @param digits An eleven string representing the UIC number of the locomotive
+ * @param autocontrol The 12th number of the UIC number representing it's autocontrol value
+ * @returns A formatted string representing in a readable manner the full UIC number with spaces between groups of number
+ */
+function formatLocomotiveNumber(digits: string, autocontrol: number): string {
 	if (digits.length !== 11) {
-		throw new Error("Input string must be exactly 12 characters long");
+		throw new Error("Input string must be exactly 11 characters long");
 	}
 
 	const typeCode = digits.slice(0, 2);
@@ -32,7 +43,7 @@ function formatLocomotiveNumber(digits: string, luhnDigit: number): string {
 	const seriesNumber = digits.slice(4, 8);
 	const serialNumber = digits.slice(8, 11);
 
-	return `${typeCode} ${countryCode} ${seriesNumber} ${serialNumber}-${luhnDigit}`;
+	return `${typeCode} ${countryCode} ${seriesNumber} ${serialNumber}-${autocontrol}`;
 }
 
 export { calculateAutocontrol, formatLocomotiveNumber };
