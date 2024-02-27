@@ -31,7 +31,7 @@ rollingStockRouter.get("/all", async (req: Request, res: Response) => {
 		res.status(200).json(rollingStock);
 	} else {
 		res.status(404).json({
-			message: "No rolling stock found",
+			message: "Aucun train trouvé",
 		});
 	}
 });
@@ -46,7 +46,7 @@ rollingStockRouter.get("/company", async (req: Request, res: Response) => {
 		res.status(200).json(rollingStock);
 	} else {
 		res.status(404).json({
-			message: "No rolling stock found",
+			message: "Aucun train trouvé",
 		});
 	}
 });
@@ -59,7 +59,7 @@ rollingStockRouter.get(
 		if (!uicQuery || uicQuery.length !== 11) {
 			return res
 				.status(400)
-				.json({ error: "Invalid input, please provide 11 digits" });
+				.json({ error: "Merci de rentrer un numéro valide de 11 chiffres" });
 		}
 
 		try {
@@ -67,12 +67,12 @@ rollingStockRouter.get(
 			const formattedNumber = formatLocomotiveNumber(uicQuery, autocontrol);
 
 			res.status(200).json({
-				message: `The UIC number is ${formattedNumber}`,
+				message: `Le numéro UIC formatté est ${formattedNumber}`,
 			});
 		} catch (error) {
 			res.status(400).json({
 				message:
-					"An error occured while calculating autocontrol or formatting the full number",
+					"Une erreur est survenue lors du calcul de la clé ou lors du formattage du numéro UIC",
 			});
 		}
 	}

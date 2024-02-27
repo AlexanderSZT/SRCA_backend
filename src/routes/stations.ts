@@ -23,7 +23,7 @@ stationsRouter.get("/all", async (req: Request, res: Response) => {
 	if (stations) {
 		res.status(200).json(stations);
 	} else {
-		res.status(404).send(`Aucune gare`);
+		res.status(404).send(`Aucune gare trouvée`);
 	}
 });
 
@@ -34,7 +34,7 @@ stationsRouter.get("/company", async (req: Request, res: Response) => {
 	if (stations) {
 		res.status(200).json(stations);
 	} else {
-		res.status(404).send(`Aucune gare`);
+		res.status(404).send(`Aucune gare trouvée`);
 	}
 });
 

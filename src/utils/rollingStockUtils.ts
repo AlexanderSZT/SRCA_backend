@@ -35,7 +35,9 @@ function calculateAutocontrol(number: string): number {
  */
 function formatLocomotiveNumber(digits: string, autocontrol: number): string {
 	if (digits.length !== 11) {
-		throw new Error("Input string must be exactly 11 characters long");
+		throw new Error(
+			"Le paramètre digits doit obligatoirement être une chaîne contenant un numéro de 11 chiffres"
+		);
 	}
 
 	const typeCode = digits.slice(0, 2);
