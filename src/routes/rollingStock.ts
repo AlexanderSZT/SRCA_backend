@@ -5,6 +5,8 @@ import {
 	calculateAutocontrol,
 	formatLocomotiveNumber,
 } from "../utils/rollingStockUtils";
+import { COUNTRY_CODES, KIND_CODES } from "../data/UICData";
+
 dotenv.config();
 
 const rollingStockRouter = Router();
@@ -65,7 +67,7 @@ rollingStockRouter.get(
 		try {
 			const autocontrol = calculateAutocontrol(uicQuery);
 			const formattedNumber = formatLocomotiveNumber(uicQuery, autocontrol);
-
+			console.log(formattedNumber);
 			res.status(200).json({
 				message: `Le numéro UIC formatté est ${formattedNumber}`,
 			});
@@ -78,4 +80,11 @@ rollingStockRouter.get(
 	}
 );
 
+rollingStockRouter.get("/kind-code", (req: Request, res: Response) => {
+	res.status(200).json(KIND_CODES);
+});
+
+rollingStockRouter.get("/country-code", (req: Request, res: Response) => {
+	res.status(200).json(COUNTRY_CODES);
+});
 export { rollingStockRouter };

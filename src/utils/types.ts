@@ -31,3 +31,14 @@ export type RollingStock = {
 	quant: number;
 	img: string;
 };
+
+export type UICKindCode = {
+	code: number;
+	label: string;
+};
+
+export type UICCountryCode = {
+	code: number;
+	iso: string;
+	label: string;
+};
