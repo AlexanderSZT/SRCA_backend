@@ -1,41 +1,15 @@
-import { Router, Request, Response } from "express";
-import dotenv from "dotenv";
-import { fetchStations } from "../utils/customFetchMethods";
-
-dotenv.config();
+import { Router, Request, Response, NextFunction } from "express";
+import stationsController from "../controllers/stationsController";
 
 const stationsRouter = Router();
-const API_KEY = process.env.API_KEY;
 
-stationsRouter.use(function timeLog(req, res, next) {
+stationsRouter.use(function timeLog(req: Request, res: Response, next: NextFunction) {
 	console.log("Time: ", Date.now());
 	next();
 });
 
-stationsRouter.get("/", (req: Request, res: Response) => {
-	res.send("Stations router root endpoint");
-});
-
-stationsRouter.get("/all", async (req: Request, res: Response) => {
-	const endpoint = `https://train-empire.com/api/getAllStations.php?auth=${API_KEY}`;
-	const stations = await fetchStations(endpoint);
-
-	if (stations) {
-		res.status(200).json(stations);
-	} else {
-		res.status(404).send(`Aucune gare trouvée`);
-	}
-});
-
-stationsRouter.get("/company", async (req: Request, res: Response) => {
-	const endpoint = `https://train-empire.com/api/getCompanyStations.php?auth=${API_KEY}`;
-	const stations = await fetchStations(endpoint);
-
-	if (stations) {
-		res.status(200).json(stations);
-	} else {
-		res.status(404).send(`Aucune gare trouvée`);
-	}
-});
+stationsRouter.get("/", stationsController.index);
+stationsRouter.get("/all", stationsController.getAllStations);
+stationsRouter.get("/company", stationsController.getCompanyStations);
 
 export { stationsRouter };
