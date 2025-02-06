@@ -2,44 +2,79 @@ import { UICCountryCode, UICKindCode } from "../utils/types";
 
 const KIND_CODES: UICKindCode[] = [
 	{
+		code: 50,
+		label: "Voiture de passagers, usage domestique uniquement",
+		type: "passenger",
+	},
+	{
+		code: 51,
+		label: "Voiture de passagers, usage international (RIC), écartement fixe",
+		type: "passenger",
+	},
+	{
+		code: 52,
+		label: "Voiture de passagers, usage international (RIC), écartement variable",
+		type: "passenger",
+	},
+	{
+		code: 61,
+		label: "Voiture de passagers, Eurocity, écartement fixe",
+		type: "passenger",
+	},
+	{
+		code: 62,
+		label: "Voiture de passagers, Eurocity, écartement variable",
+		type: "passenger",
+	},
+	{
 		code: 90,
 		label: "Autre, vapeur",
+		type: "passenger",
 	},
 	{
 		code: 91,
 		label: "Locomotive électrique",
+		type: "motorised",
 	},
 	{
 		code: 92,
 		label: "Locomotive diesel",
+		type: "motorised",
 	},
 	{
 		code: 93,
 		label: "Automotrice électrique (grande vitesse) - Motrice ou remorque",
+		type: "motorised",
 	},
 	{
 		code: 94,
 		label: "Automotrice électrique (basse vitesse) - Motrice ou remorque",
+		type: "motorised",
 	},
 	{
 		code: 95,
 		label: "Automotrice diesel - Motrice ou remorque",
+		type: "motorised",
 	},
 	{
 		code: 96,
 		label: "Remorque spéciale",
+		type: "other",
 	},
 	{
 		code: 97,
 		label: "Locomotive de manoeuvre électrique",
+		type: "motorised",
 	},
 	{
 		code: 98,
 		label: "Locomotive de manoeuvre diesel",
+		type: "motorised",
 	},
 	{
 		code: 99,
 		label: "Spécial",
+		type: "other",
 	},
 ];
 

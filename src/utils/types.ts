@@ -35,6 +35,7 @@ export type RollingStock = {
 export type UICKindCode = {
 	code: number;
 	label: string;
+	type: "passenger" | "freight" | "motorised" | "other";
 };
 
 export type UICCountryCode = {

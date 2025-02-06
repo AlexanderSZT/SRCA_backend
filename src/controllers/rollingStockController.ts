@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import { Request, Response } from "express";
 import { fetchRollingStock } from "../utils/customFetchMethods";
-import { calculateAutocontrol, formatLocomotiveNumber } from "../utils/rollingStockUtils";
+import { calculateAutocontrol, formatRollingStockNumber } from "../utils/rollingStockUtils";
 import { COUNTRY_CODES, KIND_CODES } from "../data/UICData";
 
 dotenv.config();
@@ -48,7 +48,7 @@ const findAutocontrol = async (req: Request, res: Response) => {
 
 	try {
 		const autocontrol = calculateAutocontrol(uicQuery);
-		const formattedNumber = formatLocomotiveNumber(uicQuery, autocontrol);
+		const formattedNumber = formatRollingStockNumber(uicQuery, autocontrol);
 		console.log(formattedNumber);
 		res.status(200).json({
 			message: `Le numéro UIC formatté est ${formattedNumber}`,
