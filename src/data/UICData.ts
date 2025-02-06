@@ -192,7 +192,7 @@ const COUNTRY_CODES: UICCountryCode[] = [
 	{
 		code: 50,
 		iso: "BA",
-		label: "Bosnie-Herzgovine (Fédération croato-musulmane)",
+		label: "Bosnie-Herzégovine (Fédération croato-musulmane)",
 	},
 	{
 		code: 51,
