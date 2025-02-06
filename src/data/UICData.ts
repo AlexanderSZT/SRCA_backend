@@ -120,9 +120,64 @@ const COUNTRY_CODES: UICCountryCode[] = [
 		label: "Estonie",
 	},
 	{
+		code: 27,
+		iso: "KZ",
+		label: "Kazakhstan",
+	},
+	{
+		code: 28,
+		iso: "GE",
+		label: "Géorgie",
+	},
+	{
+		code: 29,
+		iso: "UZ",
+		label: "Ouzbékistan",
+	},
+	{
+		code: 30,
+		iso: "KP",
+		label: "Corée du Nord",
+	},
+	{
+		code: 31,
+		iso: "MN",
+		label: "Mongolie",
+	},
+	{
+		code: 32,
+		iso: "VN",
+		label: "Vietnam",
+	},
+	{
+		code: 33,
+		iso: "CN",
+		label: "China",
+	},
+	{
+		code: 34,
+		iso: "LA",
+		label: "Laos",
+	},
+	{
+		code: 383,
+		iso: "KOS",
+		label: "Kosovo",
+	},
+	{
+		code: 40,
+		iso: "CU",
+		label: "Cuba",
+	},
+	{
 		code: 41,
 		iso: "AL",
 		label: "Albanie",
+	},
+	{
+		code: 42,
+		iso: "JP",
+		label: "Japon",
 	},
 	{
 		code: 44,
@@ -170,9 +225,29 @@ const COUNTRY_CODES: UICCountryCode[] = [
 		label: "Slovaquie",
 	},
 	{
+		code: 57,
+		iso: "AZ",
+		label: "Azerbaïdjan",
+	},
+	{
+		code: 58,
+		iso: "AM",
+		label: "Arménie",
+	},
+	{
+		code: 59,
+		iso: "KG",
+		label: "Kirghizistan",
+	},
+	{
 		code: 60,
 		iso: "IRL",
 		label: "Irlande",
+	},
+	{
+		code: 61,
+		iso: "KR",
+		label: "Corée du Sud",
 	},
 	{
 		code: 62,
@@ -183,6 +258,21 @@ const COUNTRY_CODES: UICCountryCode[] = [
 		code: 65,
 		iso: "MK",
 		label: "Macédoine du Nord",
+	},
+	{
+		code: 66,
+		iso: "TJ",
+		label: "Tadjikistan",
+	},
+	{
+		code: 67,
+		iso: "TM",
+		label: "Turkménistan",
+	},
+	{
+		code: 68,
+		iso: "AF",
+		label: "Afghanistan",
 	},
 	{
 		code: 70,
@@ -275,9 +365,59 @@ const COUNTRY_CODES: UICCountryCode[] = [
 		label: "Belgique",
 	},
 	{
+		code: 89,
+		iso: "TZ",
+		label: "Tanzanie",
+	},
+	{
+		code: 90,
+		iso: "EG",
+		label: "Egypte",
+	},
+	{
+		code: 91,
+		iso: "TN",
+		label: "Tunisie",
+	},
+	{
+		code: 92,
+		iso: "DZ",
+		label: "Algérie",
+	},
+	{
+		code: 93,
+		iso: "MA",
+		label: "Maroc",
+	},
+	{
 		code: 94,
 		iso: "P",
 		label: "Portugal",
+	},
+	{
+		code: 95,
+		iso: "IL",
+		label: "Israël",
+	},
+	{
+		code: 96,
+		iso: "IR",
+		label: "Iran",
+	},
+	{
+		code: 97,
+		iso: "SY",
+		label: "Syrie",
+	},
+	{
+		code: 98,
+		iso: "LB",
+		label: "Liban",
+	},
+	{
+		code: 99,
+		iso: "IQ",
+		label: "Iraq",
 	},
 ];
 export { KIND_CODES, COUNTRY_CODES };
