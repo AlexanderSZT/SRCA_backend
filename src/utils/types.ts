@@ -31,15 +31,3 @@ export type RollingStock = {
 	quant: number;
 	img: string;
 };
-
-export type UICKindCode = {
-	code: number;
-	label: string;
-	type: "passenger" | "freight" | "motorised" | "other";
-};
-
-export type UICCountryCode = {
-	code: number;
-	iso: string;
-	label: string;
-};
