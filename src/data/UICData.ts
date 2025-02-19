@@ -1,4 +1,14 @@
-import { UICCountryCode, UICKindCode } from "../utils/types";
+type UICKindCode = {
+	code: number;
+	label: string;
+	type: "passenger" | "motorised" | "other" | "freight";
+};
+
+type UICCountryCode = {
+	code: number;
+	iso: string;
+	label: string;
+};
 
 const KIND_CODES: UICKindCode[] = [
 	{
