@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import { Request, Response } from "express";
 import { fetchRollingStock } from "../utils/customFetchMethods";
 import { calculateAutocontrol, formatRollingStockNumber } from "../utils/rollingStockUtils";
-import { COUNTRY_CODES, KIND_CODES } from "../data/UICData";
+import { UICCountryCode, UICKindCode } from "../schemas/UICData";
 
 dotenv.config();
 const API_KEY = process.env.API_KEY;
@@ -48,7 +48,7 @@ const findAutocontrol = async (req: Request, res: Response) => {
 
 	try {
 		const autocontrol = calculateAutocontrol(uicQuery);
-		const formattedNumber = formatRollingStockNumber(uicQuery, autocontrol);
+		const formattedNumber = await formatRollingStockNumber(uicQuery, autocontrol);
 		console.log(formattedNumber);
 		res.status(200).json({
 			message: `Le numéro UIC formatté est ${formattedNumber}`,
@@ -61,11 +61,21 @@ const findAutocontrol = async (req: Request, res: Response) => {
 };
 
 const kindCode = async (req: Request, res: Response) => {
-	res.status(200).json(KIND_CODES);
+	try {
+		const kindCodes = await UICKindCode.find({});
+		res.status(200).json(kindCodes);
+	} catch (error) {
+		res.status(500).json({ error: "Une erreur est survenue lors de la récupération des codes de type" });
+	}
 };
 
 const countryCode = async (req: Request, res: Response) => {
-	res.status(200).json(COUNTRY_CODES);
+	try {
+		const countryCodes = await UICCountryCode.find({});
+		res.status(200).json(countryCodes);
+	} catch (error) {
+		res.status(500).json({ error: "Une erreur est survenue lors de la récupération des codes de pays" });
+	}
 };
 
 const rollingStockController = {
