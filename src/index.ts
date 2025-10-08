@@ -6,6 +6,7 @@ import { mongodbConnect } from "./utils/dbConnect";
 import { trajectsRouter } from "./routes/trajects";
 import { stationsRouter } from "./routes/stations";
 import { rollingStockRouter } from "./routes/rollingStock";
+import { userRouter } from "./routes/user";
 
 const app: Express = express();
 const port = process.env.PORT || 3001;
@@ -16,6 +17,7 @@ const MONGO_DB_PASSWORD = process.env.MONGO_DB_PASSWORD;
 
 app.use(cors());
 app.use(morgan("dev"));
+app.use(express.json());
 
 app.get("/", (req: Request, res: Response) => {
 	res.send("SRCA and SR&CA management tools");
@@ -24,6 +26,7 @@ app.get("/", (req: Request, res: Response) => {
 app.use("/trajects", trajectsRouter);
 app.use("/stations", stationsRouter);
 app.use("/rolling-stock", rollingStockRouter);
+app.use("/users", userRouter);
 
 const start = async () => {
 	try {
