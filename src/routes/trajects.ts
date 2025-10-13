@@ -1,6 +1,7 @@
 import { Router, Request, Response, NextFunction } from "express";
 import dotenv from "dotenv";
 import trajectsController from "../controllers/trajectsController";
+import { requireSignin } from "../utils/middlewares";
 
 dotenv.config();
 
@@ -12,8 +13,8 @@ trajectsRouter.use(function timeLog(req: Request, res: Response, next: NextFunct
 });
 
 trajectsRouter.get("/", trajectsController.index);
-trajectsRouter.get("/all", trajectsController.getAllTrajects);
-trajectsRouter.get("/service", trajectsController.getTrajectsByService);
-trajectsRouter.get("/from", trajectsController.getTrajectsFrom);
+trajectsRouter.get("/all", requireSignin, trajectsController.getAllTrajects);
+trajectsRouter.get("/service", requireSignin, trajectsController.getTrajectsByService);
+trajectsRouter.get("/from", requireSignin, trajectsController.getTrajectsFrom);
 
 export { trajectsRouter };
