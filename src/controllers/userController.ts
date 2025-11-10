@@ -33,7 +33,7 @@ const signup = async (req: Request, res: Response) => {
 
 const signin = async (req: Request, res: Response) => {
 	const { username, password } = req.body;
-
+	
 	try {
 		const user = await User.findOne({ username });
 		if (user) {
@@ -68,8 +68,10 @@ const getApiKey = async (token: string): Promise<string | null> => {
 	}
 };
 
-export default {
+const userController = {
 	signup,
 	signin,
 	getApiKey,
 };
+
+export default userController;

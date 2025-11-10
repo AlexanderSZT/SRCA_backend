@@ -1,18 +1,22 @@
-import dotenv from "dotenv";
 import { Request, Response } from "express";
 import { fetchStations, fetchTraject } from "../utils/customFetchMethods";
 import { Traject } from "../utils/types";
-
-dotenv.config();
-const API_KEY = process.env.API_KEY;
+import userController from "./userController";
 
 const index = async (req: Request, res: Response) => {
 	res.send("Trajects router root endpoint");
 };
 
 const getAllTrajects = async (req: Request, res: Response) => {
+	const authHeader = req.headers.authorization;
+	if (!authHeader || !authHeader.startsWith("Bearer ")) {
+		return res.status(401).json({ message: "Authorization token missing or invalid" });
+	}
+
+	const token = authHeader.split(" ")[1];
+	const apiKey = await userController.getApiKey(token);
 	const trajects = await fetchTraject(
-		`https://train-empire.com/api/getTrajects.php?auth=${API_KEY}`,
+		`https://train-empire.com/api/getTrajects.php?auth=${apiKey}`,
 		(traject: Traject) => traject.ongoing === "1"
 	);
 
@@ -27,8 +31,15 @@ const getAllTrajects = async (req: Request, res: Response) => {
 
 const getTrajectsByService = async (req: Request, res: Response) => {
 	const trajectService = req.query.name as string;
+	const authHeader = req.headers.authorization;
+	if (!authHeader || !authHeader.startsWith("Bearer ")) {
+		return res.status(401).json({ message: "Authorization token missing or invalid" });
+	}
+
+	const token = authHeader.split(" ")[1];
+	const apiKey = await userController.getApiKey(token);
 	const trajects = await fetchTraject(
-		`https://train-empire.com/api/getTrajects.php?auth=${API_KEY}`,
+		`https://train-empire.com/api/getTrajects.php?auth=${apiKey}`,
 		(traject: Traject) => traject.service === trajectService
 	);
 
@@ -45,7 +56,14 @@ const getTrajectsFrom = async (req: Request, res: Response) => {
 	const stationId = req.query.station as string;
 	let stationName: string | undefined = "";
 	const limit = req.query.limit || 10;
-	const stationsEndpoint = `https://train-empire.com/api/getCompanyStations.php?auth=${API_KEY}`;
+	const authHeader = req.headers.authorization;
+	if (!authHeader || !authHeader.startsWith("Bearer ")) {
+		return res.status(401).json({ message: "Authorization token missing or invalid" });
+	}
+
+	const token = authHeader.split(" ")[1];
+	const apiKey = await userController.getApiKey(token);
+	const stationsEndpoint = `https://train-empire.com/api/getCompanyStations.php?auth=${apiKey}`;
 	const stations = await fetchStations(stationsEndpoint);
 
 	if (stations) {
@@ -58,7 +76,7 @@ const getTrajectsFrom = async (req: Request, res: Response) => {
 		});
 	}
 
-	const endpoint = `https://train-empire.com/api/getFromStation.php?auth=${API_KEY}&station=${stationId}&limit=${limit}`;
+	const endpoint = `https://train-empire.com/api/getFromStation.php?auth=${apiKey}&station=${stationId}&limit=${limit}`;
 
 	const trajects = await fetchTraject(endpoint);
 	if (trajects && trajects.length > 0) {
