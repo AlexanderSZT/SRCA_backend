@@ -3,17 +3,28 @@ import { Request, Response } from "express";
 import { fetchRollingStock } from "../utils/customFetchMethods";
 import { calculateAutocontrol, formatRollingStockNumber } from "../utils/rollingStockUtils";
 import { UICCountryCode, UICKindCode } from "../schemas/UICData";
+import userController from "./userController";
 
 dotenv.config();
-const API_KEY = process.env.API_KEY;
 
 const index = (req: Request, res: Response) => {
 	return res.send("Rolling Stock router root endpoint");
 };
 
 const getAllRollingStock = async (req: Request, res: Response) => {
+	const authHeader = req.headers.authorization;
+	if (!authHeader || !authHeader.startsWith("Bearer ")) {
+		return res.status(401).json({ message: "Authorization token missing or invalid" });
+	}
+	
+	const token = authHeader.split(" ")[1];
+	const apiKey = await userController.getApiKey(token);
+
+	if (!apiKey) {
+		return res.status(403).json({ message: "Unable to retrieve API key" });
+	}
 	const rollingStock = await fetchRollingStock(
-		`https://train-empire.com/api/getAllEngines.php?auth=${API_KEY}&noPic=1`
+		`https://train-empire.com/api/getAllEngines.php?auth=${apiKey}&noPic=1`
 	);
 	if (rollingStock) {
 		res.status(200).json(rollingStock);
@@ -25,9 +36,21 @@ const getAllRollingStock = async (req: Request, res: Response) => {
 };
 
 const getCompanyRollingStock = async (req: Request, res: Response) => {
+	const authHeader = req.headers.authorization;
+	if (!authHeader || !authHeader.startsWith("Bearer ")) {
+		return res.status(401).json({ message: "Authorization token missing or invalid" });
+	}
+
+	const token = authHeader.split(" ")[1];
+	const apiKey = await userController.getApiKey(token);
+
+	if (!apiKey) {
+		return res.status(403).json({ message: "Unable to retrieve API key" });
+	}
+
 	const customLiveryQuery = req.query.customLivery as string;
 	const rollingStock = await fetchRollingStock(
-		`https://train-empire.com/api/getCompanyEngines.php?auth=${API_KEY}&noPic=1`,
+		`https://train-empire.com/api/getCompanyEngines.php?auth=${apiKey}&noPic=1`,
 		customLiveryQuery
 	);
 	if (rollingStock) {

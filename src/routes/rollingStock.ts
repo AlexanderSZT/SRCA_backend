@@ -1,6 +1,7 @@
 import { Router, Request, Response, NextFunction } from "express";
 import dotenv from "dotenv";
 import rollingStockController from "../controllers/rollingStockController";
+import { requireSignin } from "../utils/middlewares";
 
 dotenv.config();
 
@@ -14,7 +15,7 @@ rollingStockRouter.use(function timeLog(req: Request, res: Response, next: NextF
 
 rollingStockRouter.get("/", rollingStockController.index);
 rollingStockRouter.get("/all", rollingStockController.getAllRollingStock);
-rollingStockRouter.get("/company", rollingStockController.getCompanyRollingStock);
+rollingStockRouter.get("/company", requireSignin, rollingStockController.getCompanyRollingStock);
 rollingStockRouter.get("/find-autocontrol", rollingStockController.findAutocontrol);
 rollingStockRouter.get("/kind-code", rollingStockController.kindCode);
 rollingStockRouter.get("/country-code", rollingStockController.countryCode);
